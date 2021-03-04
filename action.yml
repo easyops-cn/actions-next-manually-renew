@@ -1,0 +1,15 @@
+name: Manually Renew
+description: 'GitHub Actions: manually renew for Brick Next repositories'
+runs:
+  using: "composite"
+  steps:
+  - run: yarn install --frozen-lockfile
+    shell: bash
+  - run: yarn renew
+    shell: bash
+  - run: yarn extract
+    shell: bash
+  - run: npx yarn-deduplicate yarn.lock
+    shell: bash
+  - run: yarn install
+    shell: bash
